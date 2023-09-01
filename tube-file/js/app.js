@@ -7,17 +7,25 @@ const loadInfo = async () => {
   const tubeContainer = document.getElementById("button-container");
   tubes.forEach((category) => {
     const div = document.createElement("div");
-    div.classList = "flex justify-center items-center justify-center w-full   gap-4 ";
+    div.classList = "";
     div.innerHTML = `
-     <button class="btn">${category.category}</button>
+     <button onclick="handleDataLoad()" class="btn">${category.category}</button>
     
     `;
     tubeContainer.appendChild(div);
-    console.log(tubes);
   })
-  console.log(tubes);
+};
 
-}
+const handleDataLoad = async (categoryid) => {
+  const response = await fetch('https://openapi.programming-hero.com/api/videos/category/${id}');
+  const data = await response.json();
+  const cardContainer =
+
+    data.data.forEach((news){
+      console.log(news);
+    })
+  console.log("data");
+};
 
 
 
