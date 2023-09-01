@@ -6,25 +6,26 @@ const loadInfo = async () => {
 
   const tubeContainer = document.getElementById("button-container");
   tubes.forEach((category) => {
+    console.log(tubes);
     const div = document.createElement("div");
-    div.classList = "";
+    div.classList = "flex justify-center items-center gap-4 ";
     div.innerHTML = `
-     <button onclick="handleDataLoad()" class="btn">${category.category}</button>
-    
-    `;
+       <button  onclick="loadAllLinks('${category.category_id}')" class="btn">${category.category}</button>
+
+      `;
     tubeContainer.appendChild(div);
-  })
+
+  });
 };
-
-const handleDataLoad = async (categoryid) => {
-  const response = await fetch('https://openapi.programming-hero.com/api/videos/category/${category_id}');
+const loadAllLinks = async (categoryid) => {
+  const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryid}`);
   const data = await response.json();
-  const cardContainer = document.getElementById('card-container');
-
+  const cardContainer = document.getElementById("card-container");
   data.data.forEach((news) => {
     const div = document.createElement('div');
-    d.innerHTML = `
-    <div class="card w-96 bg-base-100 shadow-xl">
+    div.classList = `card w-56 bg-base-200 shadow-xl`;
+    div.innerHTML = `
+    <div class="">
         <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
         <div class="card-body">
           <h2 class="card-title">
@@ -38,10 +39,9 @@ const handleDataLoad = async (categoryid) => {
           </div>
         </div>
       </div>
-
     `;
     cardContainer.appendChild(div);
-  });
-  //console.log("data");
+  })
 };
+
 loadInfo();
